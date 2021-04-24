@@ -3,7 +3,7 @@ A minimal boilerplate theme for WordPress using [TailwindCSS](https://tailwindcs
 
 ## Getting started
 * Clone repo `git clone https://github.com/pixeldevsio/tailpress.git && cd tailpress`
-* Run `rm -rf .git` to remove git
+* Run `rm -rf .git` to remove git.
 * Run `npm install`
 * Run `npm run development`
 * Run `npm run watch` to start developing
