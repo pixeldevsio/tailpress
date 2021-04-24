@@ -2,7 +2,7 @@
 A minimal boilerplate theme for WordPress using [TailwindCSS](https://tailwindcss.com/), with [PostCSS](https://postcss.org) and [Laravel Mix](https://laravel-mix.com/).
 
 ## Getting started
-* Clone repo `git clone https://github.com/jeffreyvr/tailpress.git && cd tailpress`
+* Clone repo `git clone https://github.com/pixeldevsio/tailpress.git && cd tailpress`
 * Run `rm -rf .git` to remove git
 * Run `npm install`
 * Run `npm run development`
