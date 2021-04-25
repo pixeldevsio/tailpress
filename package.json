@@ -2,12 +2,12 @@
 	"name": "tailpress",
 	"version": "0.0.9",
 	"description": "Boilerplate WordPress theme with TailwindCSS.",
-	"author": "Jeffrey van Rossum",
+	"author": "PixelDevs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jeffreyvr/tailpress"
+		"url": "https://github.com/pixeldevsio/tailpress/tree/underscores"
 	},
-	"theme_uri": "https://github.com/jeffreyvr/tailpress",
+	"theme_uri": "https://github.com/pixeldevsio/tailpress/tree/underscores",
 	"author_uri": "https://vanrossum.dev",
 	"text_domain": "tailpress",
 	"license": "GPL-2.0",
