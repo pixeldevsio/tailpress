@@ -1,173 +1,180 @@
 <?php
-
 /**
- * Enqueue scripts.
+ * tailwind functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package tailwind
  */
-function tailpress_enqueue_scripts() {
-	$theme = wp_get_theme();
 
-	wp_enqueue_script( 'jquery' );
-
-	wp_enqueue_style( 'tailpress', tailpress_get_mix_compiled_asset_url( 'css/app.css' ), array(), $theme->get( 'Version' ) );
-	wp_enqueue_script( 'tailpress', tailpress_get_mix_compiled_asset_url( 'js/app.js' ), array( 'jquery' ), $theme->get( 'Version' ) );
+if ( ! defined( '_S_VERSION' ) ) {
+	// Replace the version number of the theme on each release.
+	define( '_S_VERSION', '1.0.0' );
 }
 
-add_action( 'wp_enqueue_scripts', 'tailpress_enqueue_scripts' );
+if ( ! function_exists( 'tailwind_setup' ) ) :
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function tailwind_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on tailwind, use a find and replace
+		 * to change 'tailwind' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'tailwind', get_template_directory() . '/languages' );
 
-/**
- * Get mix compiled asset.
- *
- * @param string $path The path to the asset.
- *
- * @return string
- */
-function tailpress_get_mix_compiled_asset_url( $path ) {
-	$path                = '/' . $path;
-	$stylesheet_dir_uri  = get_stylesheet_directory_uri();
-	$stylesheet_dir_path = get_stylesheet_directory();
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
 
-	if ( ! file_exists( $stylesheet_dir_path . '/mix-manifest.json' ) ) {
-		return $stylesheet_dir_uri . $path;
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus(
+			array(
+				'menu-1' => esc_html__( 'Primary', 'tailwind' ),
+			)
+		);
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
+		);
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support(
+			'custom-background',
+			apply_filters(
+				'tailwind_custom_background_args',
+				array(
+					'default-color' => 'ffffff',
+					'default-image' => '',
+				)
+			)
+		);
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 250,
+				'width'       => 250,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 	}
-
-	$mix_file_path = file_get_contents( $stylesheet_dir_path . '/mix-manifest.json' );
-	$manifest      = json_decode( $mix_file_path, true );
-	$asset_path    = ! empty( $manifest[ $path ] ) ? $manifest[ $path ] : $path;
-
-	return $stylesheet_dir_uri . $asset_path;
-}
+endif;
+add_action( 'after_setup_theme', 'tailwind_setup' );
 
 /**
- * Get data from the tailpress.json file.
+ * Set the content width in pixels, based on the theme's design and stylesheet.
  *
- * @param mixed $key The key to retrieve.
+ * Priority 0 to make it available to lower priority callbacks.
  *
- * @return mixed|null
+ * @global int $content_width
  */
-function tailpress_get_data( $key = null ) {
-	$config = json_decode( file_get_contents( get_stylesheet_directory() . '/tailpress.json' ), true );
-
-	if ( $key === null ) {
-		return filter_var_array( $config, FILTER_SANITIZE_STRING );
-	}
-
-	$option = filter_var( $config[ $key ], FILTER_SANITIZE_STRING );
-
-	return $option ?? null;
+function tailwind_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'tailwind_content_width', 640 );
 }
+add_action( 'after_setup_theme', 'tailwind_content_width', 0 );
 
 /**
- * Theme setup.
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function tailpress_setup() {
-	// Let WordPress manage the document title.
-	add_theme_support( 'title-tag' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
+function tailwind_widgets_init() {
+	register_sidebar(
 		array(
-			'primary' => __( 'Primary Menu', 'tailpress' ),
+			'name'          => esc_html__( 'Sidebar', 'tailwind' ),
+			'id'            => 'sidebar-1',
+			'description'   => esc_html__( 'Add widgets here.', 'tailwind' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
 		)
 	);
-
-	// Switch default core markup for search form, comment form, and comments
-	// to output valid HTML5.
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		)
-	);
-
-	// Adding Thumbnail basic support.
-	add_theme_support( 'post-thumbnails' );
-
-	// Block editor.
-	add_theme_support( 'align-wide' );
-
-	add_theme_support( 'wp-block-styles' );
-
-	add_theme_support( 'editor-styles' );
-	add_editor_style();
-
-	$tailpress = tailpress_get_data();
-
-	$colors = array_map(
-		function ( $color, $hex ) {
-			return array(
-				'name'  => ucfirst( $color ),
-				'slug'  => $color,
-				'color' => $hex,
-			);
-		},
-		array_keys( $tailpress['colors'] ),
-		$tailpress['colors']
-	);
-
-	$font_sizes = array_map(
-		function ( $size, $px ) {
-			return array(
-				'name' => ucfirst( $size ),
-				'size' => $px,
-				'slug' => $size,
-			);
-		},
-		array_keys( $tailpress['fontSizes'] ),
-		$tailpress['fontSizes']
-	);
-
-	add_theme_support( 'editor-color-palette', $colors );
-	add_theme_support( 'editor-font-sizes', $font_sizes );
 }
-
-add_action( 'after_setup_theme', 'tailpress_setup' );
+add_action( 'widgets_init', 'tailwind_widgets_init' );
 
 /**
- * Adds option 'li_class' to 'wp_nav_menu'.
- *
- * @param string  $classes String of classes.
- * @param mixed   $item The curren item.
- * @param WP_Term $args Holds the nav menu arguments.
- *
- * @return array
+ * Enqueue scripts and styles.
  */
-function tailpress_nav_menu_add_li_class( $classes, $item, $args, $depth ) {
-	if ( isset( $args->li_class ) ) {
-		$classes[] = $args->li_class;
-	}
+function tailwind_scripts() {
+	wp_enqueue_style( 'tailwind-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_style_add_data( 'tailwind-style', 'rtl', 'replace' );
 
-	if ( isset( $args->{"li_class_$depth"} ) ) {
-		$classes[] = $args->{"li_class_$depth"};
-	}
+	wp_enqueue_script( 'tailwind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	return $classes;
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
-
-add_filter( 'nav_menu_css_class', 'tailpress_nav_menu_add_li_class', 10, 4 );
+add_action( 'wp_enqueue_scripts', 'tailwind_scripts' );
 
 /**
- * Adds option 'submenu_class' to 'wp_nav_menu'.
- *
- * @param string  $classes String of classes.
- * @param mixed   $item The curren item.
- * @param WP_Term $args Holds the nav menu arguments.
- *
- * @return array
+ * Implement the Custom Header feature.
  */
-function tailpress_nav_menu_add_submenu_class( $classes, $args, $depth ) {
-	if ( isset( $args->submenu_class ) ) {
-		$classes[] = $args->submenu_class;
-	}
+require get_template_directory() . '/inc/custom-header.php';
 
-	if ( isset( $args->{"submenu_class_$depth"} ) ) {
-		$classes[] = $args->{"submenu_class_$depth"};
-	}
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
 
-	return $classes;
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/inc/jetpack.php';
 }
 
-add_filter( 'nav_menu_submenu_css_class', 'tailpress_nav_menu_add_submenu_class', 10, 3 );
