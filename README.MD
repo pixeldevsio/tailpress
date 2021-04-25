@@ -1,4 +1,3 @@
-# devmessage
 # TailPress
 A minimal boilerplate theme for WordPress using [TailwindCSS](https://tailwindcss.com/), with [PostCSS](https://postcss.org) and [Laravel Mix](https://laravel-mix.com/).
 
