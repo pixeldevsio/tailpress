@@ -166,7 +166,9 @@ function tailwind_scripts() {
 	wp_enqueue_style( 'tailwind-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'tailwind-style', 'rtl', 'replace' );
 	
-	wp_enqueue_style( 'tailwind-app', get_template_directory_uri() . '/css/app.css', array(), _S_VERSION );
+	wp_enqueue_style( 'tailpress', tailpress_get_mix_compiled_asset_url( 'css/app.css' ), array(), $theme->get( 'Version' ) );
+	
+	wp_enqueue_script( 'tailpress', tailpress_get_mix_compiled_asset_url( 'js/app.js' ), array( 'jquery' ), $theme->get( 'Version' ) );
 
 	wp_enqueue_script( 'tailwind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
