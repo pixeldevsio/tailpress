@@ -12,24 +12,16 @@
 	"text_domain": "tailpress",
 	"license": "GPL-2.0",
 	"scripts": {
-		"development": "mix",
-		"dev": "mix",
-		"watch": "mix watch",
-		"watch-poll": "mix watch -- --watch-options-poll=1000",
-		"hot": "mix watch --hot",
-		"production": "mix --production"
+		"development": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css; npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css;",
+		"dev": "npm run development",
+		"watch": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --watch",
+		"production": "NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --minify; NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css --minify",
+		"prod": "npm run production"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.3.1",
-		"browser-sync": "^2.26.14",
-		"browser-sync-webpack-plugin": "^2.3.0",
-		"cross-env": "^6.0.3",
-		"laravel-mix": "^6.0.19",
-		"postcss": "^8.3.5",
-		"postcss-import": "^14.0.0",
-		"postcss-nested": "^5.0.3",
-		"postcss-nested-ancestors": "^2.0.0",
-		"resolve-url-loader": "^4.0.0",
+		"cross-env": "^7.0.3",
+		"postcss-import": "^14.0.2",
 		"tailwindcss": "^2.2.4"
 	}
 }
