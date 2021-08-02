@@ -1,5 +1,5 @@
 # TailPress (with Underscores)
-A minimal boilerplate theme for WordPress using [Underscores](https://underscores.me/), [TailwindCSS](https://tailwindcss.com/), with [PostCSS](https://postcss.org) and [Laravel Mix](https://laravel-mix.com/).
+A minimal boilerplate theme for WordPress using [Underscores](https://underscores.me/), [TailwindCSS](https://tailwindcss.com/), with Tailwind's processor for compiling.
 
 ## Getting started
 * Clone repo `git clone https://github.com/pixeldevsio/tailpress.git && cd tailpress`
