@@ -35,6 +35,4 @@ Also make sure to you change the PostCSS plugins in `webpack.mix.js`.
 By default, PurgeCSS is enabled. You can modify or disable it by changing the settings in the `tailwind.config.js` file. There are several [PurgeCSS options](https://tailwindcss.com/docs/optimizing-for-production#purge-css-options).
 
 ## Links
-* [Screencasts](https://www.youtube.com/playlist?list=PL6GBdOp044SHIOSCZejodwr1HcYsC43wG)
 * [TailwindCSS Documentation](https://tailwindcss.com/docs)
-* [Laravel Mix Documentation](https://laravel-mix.com/docs)
