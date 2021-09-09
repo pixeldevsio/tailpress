@@ -20,7 +20,7 @@ CSS-classes for alignment, background and text colors will be generated automati
 To make the editing experience within the block editor more in line with the front end styling, a `editor-style.css` is generated. This file is only compiled on production builds.
 
 ## Full Site Editing support
-Tailpress is now updated to support Full Site Editing.
+TailPress is now updated to support Full Site Editing.
 
 The template editing mode is a way to edit the website without the complexity of the site editor interface.
 It is more limited than the site editor because you can not select or navigate between templates in this view.
