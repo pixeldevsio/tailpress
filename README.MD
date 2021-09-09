@@ -1,5 +1,5 @@
 # TailPress (with Underscores)
-A minimal boilerplate theme for WordPress using [Underscores](https://underscores.me/), [TailwindCSS](https://tailwindcss.com/), with Tailwind's processor for compiling.
+A minimal boilerplate theme for WordPress using [Underscores](https://underscores.me/), [TailwindCSS](https://tailwindcss.com/), with Tailwind's processor for compiling. Supports Full Site Editing using Templates.
 
 ## Getting started
 * Clone repo `git clone https://github.com/pixeldevsio/tailpress.git && cd tailpress`
@@ -18,6 +18,21 @@ TailPress comes with basic support for the [block editor](https://wordpress.org/
 CSS-classes for alignment, background and text colors will be generated automatically. You can modify this within the `tailwind.config.js` file.
 
 To make the editing experience within the block editor more in line with the front end styling, a `editor-style.css` is generated. This file is only compiled on production builds.
+
+## Full Site Editing support
+Tailpress is now updated to support Full Site Editing.
+
+The template editing mode is a way to edit the website without the complexity of the site editor interface.
+It is more limited than the site editor because you can not select or navigate between templates in this view.
+
+You access the template editing mode via the block editor.
+
+Create a new post or page. Next, open the document settings sidebar and locate the Template panel below Status & visibility.
+Here you will find information about the current template and a list of existing templates to choose from.
+
+Create a new template by selecting the New link.
+
+Edit and save the template in the same way as in the site editor.
 
 ### Define theme colors
 Four colors (primary, secondary, dark and light) are defined from the beginning. You can modify the colors in `tailpress.json`.
