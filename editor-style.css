@@ -51,13 +51,11 @@
 }
 
 .text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem
+  font-size: 1.5rem
 }
 
 .text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem
+  font-size: .875rem
 }
 
 .font-extrabold {
@@ -190,22 +188,19 @@
 }
 
 .wp-caption-text {
-  font-size: 0.875rem;
+  font-size: .;
   color: #4b5563
 }
 
 .entry-content, .block-editor-block-list__layout {
   h1 {
-    font-size: 1.5rem;
-    line-height: 2rem
+    font-size: 1.5rem
   }
   h2 {
-    font-size: 1.25rem;
-    line-height: 1.75rem
+    font-size: 1.25rem
   }
   h3 {
-    font-size: 1.125rem;
-    line-height: 1.75rem
+    font-size: 1.125rem
   }
   p, ul, ol {
     a {
@@ -243,7 +238,7 @@
 }
 
 .block-editor__typewriter {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+  font-family: SF Compact, ui-sans-serif
 }
 
 .wp-block {
@@ -260,7 +255,6 @@
 
 @media (min-width: 1024px) {
   .lg\:text-5xl {
-    font-size: 3rem;
-    line-height: 1
+    font-size: 3rem
   }
 }

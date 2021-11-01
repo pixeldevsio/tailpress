@@ -14,14 +14,23 @@
 	"scripts": {
 		"development": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css; npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css;",
 		"dev": "npm run development",
-		"watch": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --watch",
+		"watch": "concurrently \"npm run watch:css-app\" \"npm run watch:js\"",
+		"watch:css-app": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --watch",
+		"watch:js": "uglifyjs resources/js/app.js > js/app.min.js",
 		"production": "NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --minify; NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css --minify",
 		"prod": "npm run production"
 	},
 	"devDependencies": {
+		"@types/tailwindcss": "^2.2.1",
 		"autoprefixer": "^10.3.1",
 		"cross-env": "^7.0.3",
 		"postcss-import": "^14.0.2",
 		"tailwindcss": "^2.2.4"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.15.4",
+		"concurrently": "^6.3.0",
+		"esbuild": "^0.13.8",
+		"uglify-js": "latest"
 	}
 }

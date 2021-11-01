@@ -1,4 +1,6 @@
-export const plugins = [
-    require('postcss-import'),
-    require('tailwindcss'),
-];
+module.exports = {
+    plugins: [
+        require('postcss-import'),
+        require('tailwindcss'),
+    ]
+}
