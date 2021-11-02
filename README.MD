@@ -16,6 +16,10 @@ You will find the editable CSS and Javascript files within the `/resources` fold
 
 Before you use your theme in production, make sure you run `npm run production`.
 
+## NEW! AlpineJS support
+[AlpineJS](https://alpinejs.dev/) is now included in the theme! All you need to do is add `define('ALPINEJS', TRUE)` inside of your `wp-config.php` before the `/* That's all, stop editing! Happy publishing. */` line and AlpineJS will be automatically included and ready to use.
+[AlpineJS Docs](https://alpinejs.dev/start-here)
+
 ## Block editor support
 TailPress comes with basic support for the [block editor](https://wordpress.org/support/article/wordpress-editor/).
 

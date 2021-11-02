@@ -172,6 +172,11 @@ function tailwind_scripts() {
 
 	wp_enqueue_script( 'tailwind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
+    if(defined('ALPINEJS')){
+        
+        wp_enqueue_script( 'alpinejs', '//unpkg.com/alpinejs', array(), _S_VERSION );
+    }
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
