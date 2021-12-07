@@ -1,5 +1,7 @@
-# TailPress (with Underscores)
-A minimal boilerplate theme for WordPress using [Underscores](https://underscores.me/), [TailwindCSS](https://tailwindcss.com/), with Tailwind's processor for compiling. Supports Full Site Editing using Templates.
+# You're in the dev branch
+
+# TailPress
+A minimal boilerplate theme for WordPress using [TailwindCSS](https://tailwindcss.com/), with [PostCSS](https://postcss.org) and [Laravel Mix](https://laravel-mix.com/).
 
 # ATTENTION
 **We've updated the default repo to `underscores` instead of `main`. This change comes with the fact that `_S` is a stable theme maintained directly by WordPress and allows for easier updates than the custom theme that was being used originially in the `main` branch. If you would like to use the `main` branch instead, please feel free to, but we will be deprecating support for it as of December 1st, 2021. All development will be in the `underscores` branch from then on. 
