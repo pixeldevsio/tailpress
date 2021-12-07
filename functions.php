@@ -172,6 +172,7 @@ function tailwind_scripts() {
 
 	wp_enqueue_script( 'tailwind-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
+	// Adding Alpine.js support
     if(defined('ALPINEJS')){
         
         wp_enqueue_script( 'alpinejs', '//unpkg.com/alpinejs', array(), _S_VERSION );
