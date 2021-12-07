@@ -1,5 +1,16 @@
 <?php
 /**
+ * The template for displaying comments
+ *
+ * This is the template that displays the area of the page that contains both the current comments
+ * and the comment form.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package tailwind
+ */
+
+/*
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
@@ -9,66 +20,58 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area my-8">
+<div id="comments" class="comments-area">
 
-	<?php if ( have_comments() ) : ?>
+	<?php
+	// You can start editing here -- including this comment!
+	if ( have_comments() ) :
+		?>
 		<h2 class="comments-title">
 			<?php
+			$tailwind_comment_count = get_comments_number();
+			if ( '1' === $tailwind_comment_count ) {
 				printf(
-					_nx( 'One comment', '%1$s comments', get_comments_number(), 'comments title', 'tailpress' ),
-					number_format_i18n( get_comments_number() ),
-					get_the_title()
+					/* translators: 1: title. */
+					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'tailwind' ),
+					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
+			} else {
+				printf( 
+					/* translators: 1: comment count number, 2: title. */
+					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $tailwind_comment_count, 'comments title', 'tailwind' ) ),
+					number_format_i18n( $tailwind_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
+				);
+			}
 			?>
-		</h2>
+		</h2><!-- .comments-title -->
+
+		<?php the_comments_navigation(); ?>
 
 		<ol class="comment-list">
 			<?php
-				wp_list_comments(
-					array(
-						'style'       => 'ol',
-						'short_ping'  => true,
-						'avatar_size' => 56,
-					)
-				);
+			wp_list_comments(
+				array(
+					'style'      => 'ol',
+					'short_ping' => true,
+				)
+			);
 			?>
-		</ol>
+		</ol><!-- .comment-list -->
 
-	<?php endif; ?>
+		<?php
+		the_comments_navigation();
 
-	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() ) :
+			?>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'tailwind' ); ?></p>
+			<?php
+		endif;
 
-		<nav class="comment-navigation" id="comment-nav-above">
+	endif; // Check for have_comments().
 
-			<h1 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'tailpress' ); ?></h1>
-
-			<?php if ( get_previous_comments_link() ) { ?>
-					<div class="nav-previous">
-						<?php previous_comments_link( __( '&larr; Older Comments', 'tailpress' ) ); ?>
-					</div>
-			<?php } ?>
-
-			<?php if ( get_next_comments_link() ) { ?>
-				<div class="nav-next">
-					<?php next_comments_link( __( 'Newer Comments &rarr;', 'tailpress' ) ); ?>
-				</div>
-			<?php } ?>
-
-		</nav><!-- #comment-nav-above -->
-
-	<?php endif; ?>
-
-	<?php if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'tailpress' ); ?></p>
-	<?php endif; ?>
-
-	<?php
-	comment_form(
-		array(
-			'class_submit'  => 'bg-primary text-white cursor-pointer rounded font-bold py-2 px-4',
-			'comment_field' => '<textarea id="comment" name="comment" class="bg-gray-200 w-full py-2 px-3" aria-required="true"></textarea>',
-		)
-	);
+	comment_form();
 	?>
 
-</div>
+</div><!-- #comments -->

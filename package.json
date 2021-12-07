@@ -1,35 +1,36 @@
 {
 	"name": "tailpress",
-	"version": "0.0.9",
+	"version": "0.1.0",
 	"description": "Boilerplate WordPress theme with TailwindCSS.",
-	"author": "Jeffrey van Rossum",
+	"author": "PixelDevs",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jeffreyvr/tailpress"
+		"url": "https://github.com/pixeldevsio/tailpress/tree/underscores"
 	},
-	"theme_uri": "https://github.com/jeffreyvr/tailpress",
-	"author_uri": "https://vanrossum.dev",
+	"theme_uri": "https://github.com/pixeldevsio/tailpress/tree/underscores",
+	"author_uri": "https://pixeldevs.io",
 	"text_domain": "tailpress",
 	"license": "GPL-2.0",
 	"scripts": {
-		"development": "mix",
-		"dev": "mix",
-		"watch": "mix watch",
-		"watch-poll": "mix watch -- --watch-options-poll=1000",
-		"hot": "mix watch --hot",
-		"production": "mix --production"
+		"development": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css; npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css;",
+		"dev": "npm run development",
+		"watch": "concurrently \"npm run watch:css-app\" \"npm run watch:js\"",
+		"watch:css-app": "npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --watch",
+		"watch:js": "uglifyjs resources/js/app.js > js/app.min.js",
+		"production": "NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/app.css -o ./css/app.css --minify; NODE_ENV=production npx tailwindcss --postcss -i ./resources/css/editor-style.css -o ./editor-style.css --minify",
+		"prod": "npm run production"
 	},
 	"devDependencies": {
-		"autoprefixer": "^10.2.4",
-		"browser-sync": "^2.26.14",
-		"browser-sync-webpack-plugin": "^2.3.0",
-		"cross-env": "^6.0.3",
-		"laravel-mix": "^6.0.11",
-		"postcss": "^8.2.8",
-		"postcss-import": "^14.0.0",
-		"postcss-nested": "^5.0.3",
-		"postcss-nested-ancestors": "^2.0.0",
-		"resolve-url-loader": "^3.1.2",
-		"tailwindcss": "^2.1.0"
+		"@types/tailwindcss": "^2.2.1",
+		"autoprefixer": "^10.3.1",
+		"cross-env": "^7.0.3",
+		"postcss-import": "^14.0.2",
+		"tailwindcss": "^2.2.4"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.15.4",
+		"concurrently": "^6.3.0",
+		"esbuild": "^0.13.8",
+		"uglify-js": "latest"
 	}
 }

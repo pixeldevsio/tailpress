@@ -21,7 +21,35 @@ module.exports = {
             },
         },
         extend: {
-            colors: tailpress.colors
+            colors: tailpress.colors,
+            zIndex: {
+                '-1': '-1',
+            }
+        },
+        fontFamily: {
+            'sans': ['SF Compact', 'ui-sans-serif'],
+            'serif': ['ui-serif', 'Georgia'],
+            'mono': ['ui-monospace', 'SFMono-Regular'],
+            'display': ['SF Compact', 'Helvetica', 'ui-sans-serif'],
+            'body': ['Open Sans', 'Helvetica'],
+            'interstate': ['interstate']
+        },
+        fontSize: {
+            'xs': '.75rem',
+            'sm': '.875rem',
+            'tiny': '.875rem',
+             'base': '100%',
+             'lg': '1.125rem',
+             'xl': '1.25rem',
+             '2xl': '1.5rem',
+            '3xl': '1.875rem',
+            '4xl': '2.25rem',
+             '5xl': '3rem',
+             '6xl': '4rem',
+            '7xl': '5rem',
+            '8xl': '6rem',
+            '9xl': '7rem',
+            'xxl': 'clamp(7rem, -0.875rem + 13vw, 14rem)'
         },
     },
     plugins: [
