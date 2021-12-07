@@ -13,12 +13,10 @@
     level: # optional, default is error
     # Reporter of reviewdog command [github-pr-check,github-pr-review].
     reporter: # optional, default is github-pr-check
-    # Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
-Default is added.
+    # Filtering mode for the reviewdog command [added,diff_context,file,nofilter]. Default is added.
 
     filter_mode: # optional, default is added
-    # Exit code for reviewdog when errors are found [true,false]
-Default is `false`.
+    # Exit code for reviewdog when errors are found [true,false] Default is `false`.
 
     fail_on_error: # optional, default is false
     # Additional reviewdog flags
