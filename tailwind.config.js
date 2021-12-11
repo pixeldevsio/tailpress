@@ -5,13 +5,11 @@ const tailpress = require('./tailpress.json');
 module.exports = {
     mode: 'jit',
     tailpress,
-    purge: {
-        content: [
-            './*.php',
-            './*/*.php',
-            './safelist.txt'
-        ],
-    },
+    content: [
+        './*.php',
+        './*/*.php',
+        './safelist.txt'
+    ],
     theme: {
         container: {
             padding: {

@@ -68,7 +68,7 @@
 
 .text-gray-700 {
   --tw-text-opacity: 1;
-  color: rgba(55, 65, 81, var(--tw-text-opacity))
+  color: rgb(55 65 81 / var(--tw-text-opacity))
 }
 
 .has-primary-text-color {
@@ -205,7 +205,7 @@
   p, ul, ol {
     a {
       --tw-text-opacity: 1;
-      color: rgba(59, 130, 246, var(--tw-text-opacity))
+      color: rgb(59 130 246 / var(--tw-text-opacity))
     }
     a {
       text-decoration: underline
