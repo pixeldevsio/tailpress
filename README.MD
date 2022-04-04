@@ -7,6 +7,7 @@ Thanks!**
 
 # Update Apr. 4th, 2022
 TailwindCSS Updated to 3.0.23
+Check the [upgrade guide here](https://tailwindcss.com/docs/upgrade-guide) for what has changed in TailwindCSS.
 
 # Update Dec. 11th, 2021
 Tailwind Updated to 3.0.1
