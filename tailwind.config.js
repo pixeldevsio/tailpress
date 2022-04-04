@@ -2,16 +2,19 @@ const plugin = require('tailwindcss/plugin');
 const _ = require("lodash");
 const tailpress = require('./tailpress.json');
 
+/** Tailwind V3 Config. Read Changes here
+ * https://tailwindcss.com/docs/upgrade-guide
+**/
+
 module.exports = {
-    mode: 'jit',
+    /* NOT NEEDED IN V3 */
+    //mode: 'jit',
     tailpress,
-    purge: {
-        content: [
-            './*.php',
-            './*/*.php',
-            './safelist.txt'
-        ],
-    },
+    content: [
+        './*.php',
+        './*/*.php',
+        './safelist.txt'
+    ],
     theme: {
         container: {
             padding: {
